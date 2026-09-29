@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>별과 강이 흐르는 청정 힐링 여행지, 강원도 영월</title>
+  <meta name="description" content="한반도지형, 별마로천문대, 청령포, 장릉, 동강의 비경이 펼쳐지는 대한민국 힐링 여행의 1번지 강원특별자치도 영월군 공식 소개 웹사이트">
+  
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Dynamic Starfield Canvas -->
+  <canvas id="star-canvas"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">
+        <span>🌌 영월 Yeongwol</span>
+        <span class="logo-badge">힐링 & 비경</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#attractions">주요 명소</a></li>
+        <li><a href="#observatory">별마로 가상관측소</a></li>
+        <li><a href="#food">미식 & 특산물</a></li>
+        <li><a href="#courses">추천 여행 코스</a></li>
+      </ul>
+      <a href="#attractions" class="btn nav-cta">명소 둘러보기</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <div class="container hero-content">
+      <div class="hero-pill">
+        <span>✨ 한국관광 100선 랜드마크</span>
+      </div>
+      <h1 class="hero-title">
+        천만 개의 별빛과 푸른 물결,<br>
+        <span class="gradient-text">강원도 영월</span>에 머물다
+      </h1>
+      <p class="hero-subtitle">
+        단종의 역사가 깃든 청령포부터 밤하늘 은하수가 쏟아지는 봉래산 별마로천문대,<br>
+        서강과 동강이 빚어낸 한반도지형까지 천혜의 자연과 낭만이 머무는 고장 영월로 초대합니다.
+      </p>
+      <div class="hero-actions">
+        <a href="#attractions" class="btn btn-primary">영월 명소 탐방하기</a>
+        <a href="#observatory" class="btn btn-secondary">별마로 밤하늘 체험</a>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="hero-stats">
+        <div class="stat-item glass-card">
+          <div class="stat-value">799.8m</div>
+          <div class="stat-label">별마로천문대 봉래산 고도</div>
+        </div>
+        <div class="stat-item glass-card">
+          <div class="stat-value">UNESCO</div>
+          <div class="stat-label">세계문화유산 장릉 등재</div>
+        </div>
+        <div class="stat-item glass-card">
+          <div class="stat-value">동강 & 서강</div>
+          <div class="stat-label">대한민국 대표 청정 사행천</div>
+        </div>
+        <div class="stat-item glass-card">
+          <div class="stat-value">No.1</div>
+          <div class="stat-label">사계절 감성 힐링 여행지</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Main Attractions -->
+  <section id="attractions" class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-badge">Iconic Destinations</span>
+        <h2 class="section-title">영월의 대표 랜드마크</h2>
+        <p class="section-desc">
+          자연이 빚은 기적 같은 풍광과 가슴 뭉클한 조선의 역사, 그리고 모던한 현대 미술이 공존하는 영월의 명소들을 만나보세요.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">전체보기</button>
+        <button class="filter-btn" data-filter="nature">자연 비경</button>
+        <button class="filter-btn" data-filter="history">역사 & 문화</button>
+        <button class="filter-btn" data-filter="culture">예술 & 힐링</button>
+      </div>
+
+      <!-- Dynamic Attractions Cards Grid -->
+      <div class="attractions-grid" id="attractions-grid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Interactive Virtual Observatory -->
+  <section id="observatory" class="section-padding">
+    <div class="container">
+      <div class="observatory-section">
+        <div class="observatory-header">
+          <div>
+            <span class="section-badge" style="color: #c084fc;">Interactive Star Stargazing</span>
+            <h2 class="section-title" style="margin-bottom: 8px;">별마로 가상 천체 투어</h2>
+            <p class="section-desc" style="margin-bottom: 0;">캔버스 위 별자리 포인트에 마우스를 올려 영월 밤하늘의 성좌들을 탐색해보세요.</p>
+          </div>
+          <div class="observatory-controls">
+            <button id="cycle-stars-btn" class="btn btn-secondary" style="border-color: rgba(168, 85, 247, 0.4);">
+              별자리 전환하기 ✨
+            </button>
+          </div>
+        </div>
+
+        <div class="sky-viewer">
+          <canvas id="observatory-canvas"></canvas>
+          <div class="sky-hud">
+            <div class="sky-info-box">
+              <div class="sky-info-title" id="sky-target-name">북두칠성 (Ursa Major)</div>
+              <div class="sky-info-desc" id="sky-target-desc">영월 밤하늘에서 사계절 내내 북쪽 길잡이가 되어주는 국자 모양의 대표 별자리입니다.</div>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--accent-cyan); background: rgba(0,0,0,0.5); padding: 6px 12px; border-radius: 4px;">
+              🔭 관측 모드 가동 중
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Yeongwol Food & Culture -->
+  <section id="food" class="section-padding" style="background: rgba(15, 23, 42, 0.5);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-badge">Local Flavors</span>
+        <h2 class="section-title">영월의 정갈한 미식 탐방</h2>
+        <p class="section-desc">
+          청정 고랭지와 맑은 강이 선물하는 건강하고 담백한 영월 고유의 향토 별미를 소개합니다.
+        </p>
+      </div>
+
+      <div class="food-grid">
+        <div class="food-card glass-card">
+          <div class="food-icon-wrap">🍲</div>
+          <h3 class="food-name">꼴두국수 (메밀국수)</h3>
+          <p class="food-desc">“꼴도 보기 싫다”고 하여 이름 붙여진 정겨운 사연의 메밀국수로, 진하고 구수한 된장·멸치 육수가 일품입니다.</p>
+          <span class="food-place">영월 서부시장 및 주천면 일대</span>
+        </div>
+
+        <div class="food-card glass-card">
+          <div class="food-icon-wrap">🥟</div>
+          <h3 class="food-name">영월 메밀전병 & 올챙이국수</h3>
+          <p class="food-desc">매콤한 김치와 당면 소를 얇은 메밀전에 둥글게 말아낸 전병과 강원도 옥수수로 만든 별미 올챙이국수입니다.</p>
+          <span class="food-place">영월 서부시장 먹거리골목</span>
+        </div>
+
+        <div class="food-card glass-card">
+          <div class="food-icon-wrap">🐟</div>
+          <h3 class="food-name">동강 쏘가리·잡어 매운탕</h3>
+          <p class="food-desc">동강의 청정 1급수에서 자란 자연산 민물고기와 수제비, 시래기를 듬뿍 넣고 칼칼하게 끓여낸 보양식입니다.</p>
+          <span class="food-place">삼옥리 동강 어라연 주변</span>
+        </div>
+
+        <div class="food-card glass-card">
+          <div class="food-icon-wrap">🍇</div>
+          <h3 class="food-name">영월 포도 & 사과</h3>
+          <p class="food-desc">일교차가 크고 일조량이 풍부한 석회암 토양에서 자라 높은 당도와 아삭한 식감을 자랑하는 특산 과일입니다.</p>
+          <span class="food-place">영월 김삿갓면 & 남면 일원</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Recommended Travel Courses -->
+  <section id="courses" class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-badge">Tailored Itineraries</span>
+        <h2 class="section-title">추천 당일 & 1박 2일 여행 코스</h2>
+        <p class="section-desc">
+          테마에 맞춰 알차게 구성한 영월 여행 코스로 여유롭고 완벽한 일정을 준비하세요.
+        </p>
+      </div>
+
+      <div class="course-container">
+        <!-- Course 1 -->
+        <div class="course-card nature glass-card">
+          <span class="course-theme">힐링 & 자연 낭만 코스</span>
+          <h3 class="course-title">서강의 절경과 붉은 숲길</h3>
+          <ul class="timeline">
+            <li class="timeline-step">
+              <span class="timeline-time">10:00 AM</span>
+              <div class="timeline-name">선암마을 한반도지형</div>
+              <div class="timeline-desc">전망대 소나무 숲길 산책 후 굽이치는 서강 감상</div>
+            </li>
+            <li class="timeline-step">
+              <span class="timeline-time">01:00 PM</span>
+              <div class="timeline-name">젊은달와이파크</div>
+              <div class="timeline-desc">붉은 파빌리온 현대미술 감상 및 인생 사진 촬영</div>
+            </li>
+            <li class="timeline-step">
+              <span class="timeline-time">04:30 PM</span>
+              <div class="timeline-name">요선암 돌개구멍</div>
+              <div class="timeline-desc">자연이 깎아 만든 주천강 암반의 신비로운 지형 산책</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-card history glass-card">
+          <span class="course-theme">조선 역사 & 문화재 코스</span>
+          <h3 class="course-title">단종의 발자취와 충절의 길</h3>
+          <ul class="timeline">
+            <li class="timeline-step">
+              <span class="timeline-time">10:30 AM</span>
+              <div class="timeline-name">청령포 나룻배 승선</div>
+              <div class="timeline-desc">단종의 어소 및 600년 수령의 관음송 탐방</div>
+            </li>
+            <li class="timeline-step">
+              <span class="timeline-time">12:30 PM</span>
+              <div class="timeline-name">서부시장 미식 투어</div>
+              <div class="timeline-desc">메밀전병, 올챙이국수, 닭강정으로 풍성한 점심</div>
+            </li>
+            <li class="timeline-step">
+              <span class="timeline-time">02:30 PM</span>
+              <div class="timeline-name">장릉 (유네스코 세계유산)</div>
+              <div class="timeline-desc">단종역사관 관람 및 고즈넉한 솔숲 산책로 둘러보기</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-card night glass-card">
+          <span class="course-theme">로맨틱 나이트 코스</span>
+          <h3 class="course-title">은하수와 불빛이 머무는 밤</h3>
+          <ul class="timeline">
+            <li class="timeline-step">
+              <span class="timeline-time">04:00 PM</span>
+              <div class="timeline-name">동강 어라연 트레킹</div>
+              <div class="timeline-desc">노을 물드는 강변 비경을 따라 여유로운 산책</div>
+            </li>
+            <li class="timeline-step">
+              <span class="timeline-time">07:00 PM</span>
+              <div class="timeline-name">영월 읍내 저녁 만찬</div>
+              <div class="timeline-desc">칼칼한 동강 매운탕 또는 꼴두국수로 든든한 식사</div>
+            </li>
+            <li class="timeline-step">
+              <span class="timeline-time">08:30 PM</span>
+              <div class="timeline-name">별마로 천문대 별 관측</div>
+              <div class="timeline-desc">주망원경으로 행성과 별자리 관측 및 읍내 야경 조망</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attraction Detail Modal -->
+  <div id="place-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close-btn" aria-label="닫기">&times;</button>
+      <img id="modal-img" class="modal-hero-img" src="" alt="">
+      <div class="modal-body">
+        <h3 id="modal-title" class="modal-title"></h3>
+        <p id="modal-tagline" class="modal-tagline"></p>
+        <p id="modal-desc" style="color: var(--text-muted); line-height: 1.7;"></p>
+        
+        <div class="modal-info-list">
+          <div class="modal-info-item">
+            <div class="modal-info-label">📍 위치 / 주소</div>
+            <div id="modal-address" class="modal-info-val"></div>
+          </div>
+          <div class="modal-info-item">
+            <div class="modal-info-label">💡 관람 꿀팁</div>
+            <div id="modal-tip" class="modal-info-val"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">
+            <span>🌌 영월군 관광 가이드</span>
+          </div>
+          <p>
+            동강과 서강, 별빛이 어우러진 대한민국 대표 청정 자연 여행지.<br>
+            자연과 역사가 살아 숨 쉬는 강원특별자치도 영월군입니다.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>바로가기</h4>
+          <ul class="footer-links">
+            <li><a href="#attractions">주요 명소</a></li>
+            <li><a href="#observatory">별마로 가상관측소</a></li>
+            <li><a href="#food">영월 먹거리</a></li>
+            <li><a href="#courses">추천 여행 코스</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>여행자 정보</h4>
+          <ul class="footer-links">
+            <li>영월군 종합관광안내소 (033-374-5566)</li>
+            <li>별마로천문대 사전예약 센터</li>
+            <li>영월 문화관광 포털</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Yeongwol Tourism Experience. Crafted with Pure HTML5, CSS3 & JavaScript.</p>
+        <p>파이썬 없이 웹 브라우저에서 바로 열 수 있는 단독 웹 애플리케이션</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
